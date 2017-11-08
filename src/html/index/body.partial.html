@@ -1,0 +1,39 @@
+  <[ var parts = h.compileHtml(readme) ]>
+
+  <main>
+
+    <div class="content">
+      <div class="splash">
+        <[= parts.intro ]>
+      </div>
+      <div class="guide">
+        <[= parts.content ]>
+      </div>
+    </div>
+
+    <div id="sidebar-button" class="mnav" data-open="false">
+      <div class="nav-logo wsk-logo"></div>
+      <button class="sidebar-btn"></button>
+    </div>
+
+    <div id="sidebar-button-target" class="sidebar" data-open="false">
+      <div class="home-key">
+        <a href="#">
+          <div class="main-logo wsk-logo"></div>
+          <div class="wsk-logo-text">wsk</div>
+        </a>
+      </div>
+
+      <[= parts.toc ]>
+
+      <div class="alt-home-key">
+        <a href="https://bloomberg.github.io/wsk-notify">
+          <div class="sub-logo wsk-notify-logo"></div>
+          <div class="sub-logo-text">wsk-notify</div>
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/main.pkgd.js"></script>

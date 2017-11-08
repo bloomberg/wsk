@@ -1,0 +1,15 @@
+{
+  "rootUrl": "http://bloomberg.gitub.io/",
+  "slug": "wsk",
+  "title": "wsk",
+  "seoTitle": "wsk, a build system from Bloomberg Graphics",
+  "fbTitle": "wsk",
+  "seoDek": "The lightweight, maintainable build system",
+  "fbDek": "The lightweight, maintainable build system",
+  "seoKeywords": "wsk, wsk-notify, bloomberg graphics, build system, wsk build system, javascript console notifications",
+  "twText": "wsk — The lightweight, maintainable build system",
+  "fbImg": "wsk.gif",
+  "twImg": "wsk.gif",
+  "twHandle": "@bbgvisualdata",
+  "readme": "<[~ h.io.readDataSync('src/html/_pages/input-README.md') ]>"
+}

@@ -1,0 +1,5 @@
+module.exports = {
+  projectName: function (dirName) {
+    return dirName + '-docs'
+  }
+}

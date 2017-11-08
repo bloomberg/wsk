@@ -1,0 +1,288 @@
+// This is a useful library for specifying breakpoints
+// Documentation https://jescalan.github.io/rupture/
+@require 'rupture'
+
+// Add some modules
+@require './modules/github-gist.styl'
+@require './modules/gist-border.styl'
+@require './modules/colors.styl'
+
+// This file gets compiled into `public/styles.css`
+// For stylus reference http://stylus-lang.com/
+$sidebar-width = 275px
+$sidebar-color = #fa1e64
+
+$m-break = 768px
+
+html
+  font-size 18px
+body
+  background-color #fff
+  font-family Helvetica, sans-serif
+  font-size 62.5%
+  margin 0
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+*
+  box-sizing border-box
+h2,
+h3
+  margin 0
+
+h1,
+h2,
+h3,
+h4
+  padding 14px 0
+
+blockquote
+  margin 0
+
+code
+  background-color #fafafa
+  padding 5px
+  font-size 14px
+  color #000
+  font-family Lucida Console, Andale Mono, Courier, monospace
+  line-height 1
+
+#wsk
+  margin-bottom 14px
+
+.hljs-comment, .hljs-meta
+    color #767876
+
+.hljs-literal, .hljs-symbol, .hljs-bullet, .hljs-attribute
+    color: #006693
+
+.splash
+  h1
+    font-size 3em
+    margin 0 0 7px 0
+  .bumper-sticker
+    font-style italic
+
+h2
+  font-weight bold
+
+.content
+  max-width 'calc(100% - %s)' % $sidebar-width
+  width 100%
+  margin-left $sidebar-width
+  overflow auto
+  padding 25px 25px 0
+
+  +below($m-break)
+    max-width 100%
+    margin-left 0
+    padding-top 84px
+
+.sidebar,
+.content
+  font-size 18px
+  line-height 28px
+
+.guide
+  max-width 800px
+  margin-bottom 20px
+
+.scroll-section
+  overflow auto
+
+.mnav
+  position fixed
+  z-index 10
+  top 14px
+  right 14px
+  display none
+  background-color #fff
+  box-sizing border-box
+  border 7px solid #fff
+  cursor pointer
+  box-shadow 0 0 20px rgba(0,0,0,0.2)
+
+  .nav-logo
+    display inline-block
+    width 46px
+    height 46px
+    margin-right 7px
+    transform translate(0)
+    transition transform 0.2s ease-in-out
+
+  button
+    position relative
+    z-index 2
+    display inline-block
+    width 35px
+    height 35px
+    background-color $sidebar-color
+    padding 21px
+    line-height 1.2em
+    color #eee
+    cursor pointer
+    border-radius 0
+    background-image url(../img/mnav.png)
+    background-size 62px
+    background-position 8px 6px
+    background-repeat no-repeat
+    outline none
+    border 2px solid transparent
+
+
+  +below($m-break)
+    display flex
+
+  &:hover
+    button
+      background-position 8px -30px
+
+  &[data-open="true"]
+    box-shadow none
+    background-color transparent
+    border-color transparent
+    .nav-logo
+      transform translate(53px, 0)
+    button
+      background-position -28px 6px
+    &:hover
+      button
+        background-position -28px -30px
+
+.sidebar
+  position fixed
+  border-right 2px solid #eee
+  top 0
+  left 0
+  height 100vh
+  overflow-y scroll
+  overflow-x hidden
+  width $sidebar-width
+  background-color $sidebar-color
+  padding 25px 15px
+  line-height 1.2em
+  > ul
+    padding 0 0 14px 0 !important
+    border-bottom 1px solid #fff
+    > li
+        padding-top 5px
+        &:first-child a
+           margin-top 0
+        a
+         margin-bottom 0px
+         margin-top 5px
+        ul li a
+          margin-top 0px
+          margin-bottom 5px
+
+  ul
+    padding-left 15px
+    li:not(:last-child)
+      padding-top 3px
+  li > ul
+    padding-bottom 0 !important
+
+  +below($m-break)
+    left initial
+    transition right 0.25s, left 0.3s
+    right -100%
+    width 100%
+
+    &[data-open="true"]
+      right 0%
+      box-shadow 0 0 40px rgba(0,0,0,0.2)
+
+  .alt-home-key
+    padding-bottom 35px
+    a
+      font-weight bold
+      font-size 21px
+
+  .home-key a, .alt-home-key a
+    &:hover
+      .wsk-notify-logo
+        background-image url(../img/wsk-notify-invert.gif)
+      .wsk-logo
+        background-image url(../img/wsk-invert.gif)
+
+  a
+    // color shade($sidebar-color, 70%)
+    color #eee
+    text-decoration none
+    display block
+    position relative
+    &:hover
+      cursor pointer
+      color #000
+      text-decoration none
+
+    &.sect-btn-active
+      color #000
+
+  ul
+    list-style none
+
+.main-logo
+  width 66px
+  height @width
+  border 4px solid #fff
+  display block
+
+.wsk-logo
+  background-image url(../img/wsk.gif)
+  background-size contain
+  background-color #fff
+  background-repeat no-repeat
+
+.wsk-logo-text
+  font-size 35px
+  margin-top 10px
+
+.sub-logo-text
+  font-size 27px
+  margin-top 7px
+
+.home-key a
+  font-weight bold
+  font-size 28px
+
+.sub-logo
+  width 50px
+  height 50px
+  border 3px solid #fff
+  margin-top 7px
+  display block
+
+.wsk-notify-logo
+  background-color #fff
+  background-image url(../img/wsk-notify.gif)
+  background-size contain
+  background-repeat no-repeat
+
+.sections > a
+  padding-top 5px
+  font-weight bold
+  padding-bottom 7px
+  // &:before
+  //   content '- '
+  //   position absolute
+  //   left -7px
+
+.subsections > a
+  padding-bottom 7px
+
+a
+  color #00B9E7
+  text-decoration none
+  &:hover
+    text-decoration underline
+
+p > img
+  width 80%
+  min-width 400px
+  &[alt="compile display"],
+  &[alt="wsk watch example"],
+  &[alt="wsk build example"]
+    width 100%
+  +below($m-break)
+    width 100%
+    min-width 100%

@@ -1,0 +1,7 @@
+{
+  "extends": "standard",
+  "rules": {
+    "semi": ["error", "always"],
+    "max-len": ["error", 120]
+  }
+}
