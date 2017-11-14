@@ -1,0 +1,54 @@
+{
+  "name": "wsk",
+  "version": "0.1.0",
+  "description": "A minimal task runner system to complement your npm scripts.",
+  "main": "src/index.js",
+  "scripts": {
+    "clear-tmp": "rm -rf tests/tmp/*",
+    "test": "nyc ava tests/test-*.js --timeout=5s -s -v",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "pretest": "npm run clear-tmp",
+    "precoverage": "npm run clear-tmp"
+  },
+  "author": "Michael Keller",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bloomberg/wsk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bloomberg/wsk/issues"
+  },
+  "homepage": "https://github.com/bloomberg/wsk#readme",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "chokidar": "^1.4.3",
+    "d3-queue": "^3.0.7",
+    "underscore": "^1.8.3",
+    "wsk-notify": "^0.1.0"
+  },
+  "engines": {
+    "node": "^4.4.3"
+  },
+  "nyc": {
+    "exclude": [
+      "**/*tests/**/*",
+      "**/src/utils/**/*"
+    ]
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "coveralls": "^3.0.0",
+    "eslint": "^4.8.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.2.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "fs-extra": "^4.0.2",
+    "indian-ocean": "^3.0.2",
+    "is-glob": "^4.0.0",
+    "nyc": "^11.2.1",
+    "semistandard": "^11.0.0"
+  }
+}
