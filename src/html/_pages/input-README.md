@@ -29,6 +29,7 @@ wsk [<img src="https://github.com/bloomberg/wsk/raw/docs/src/img/wsk.gif" width=
   - [Package.json Setup](#packagejson-setup)
   - [Notifying Users](#notifying-users)
 * [Roadmap](#roadmap)
+* [Contributors](#contributors)
 * [License](#license)
 
 ## Installation
@@ -165,7 +166,7 @@ In a wsk project, the idea is you have **files to watch** and **tasks that are r
 var watcher = require('wsk').watcher;
 
 // This can be an object or an array of objects
-var filesToWatch = [
+var watchGroups = [
   {
     serviceName: 'stylus', // Give this watcher a name so we can use it to notify project creators what is happening
     path: 'src/css/**/*.styl', // A glob or an array of globs
@@ -207,13 +208,21 @@ var filesToWatch = [
   }
 ];
 
-// Add this watch group, will return an error or the chokidar .getWatched() object on done
-watcher.add(filesToWatch, function (err, watchTree) {
+// Add this watch group, will return an error or at list of the chokidar .getWatched() objects on done
+watcher.add(watchGroups, function (err, watchTrees) {
   if (err) {
     console.error(err);
     return;
   }
+  // An array of directory tree objects for every watchGroup.
+  // If you've passed an array of watchGroups, the callback happens after they are all done
   console.log(watchTree);
+  /*
+  [{
+    'src/css': [ 'styles.styl', 'embed.styl' ],
+    'src/css/modules': [ 'colors.styl' ]
+  }]
+  */
 });
 ```
 
@@ -346,6 +355,12 @@ Here are features that we would like to integrate into future versions of wsk.
 1. Dependency tree creation. It would be nice if the user could supply a function that defines a way to find dependency in a given file. This could be either by getting passed an AST or through simple string matching. For example, if you always read templates through a `h.readTemplate` function, you could extract those files recursively.
 2. Pass in a clock object or timestamp to a taskfile for easy timing.
 3. Set up a "Resolved" notification style so you can know that your error was fixed via desktop notification.
+
+## Contributors
+
+* [Michael Keller](https://twitter.com/mhkeller)
+* [Jeremy Diamond](https://twitter.com/_jsdiamond)
+* [Blacki Migliozzi](https://twitter.com/blackili)
 
 ## License
 

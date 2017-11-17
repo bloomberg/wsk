@@ -16,7 +16,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-  <meta property="og:site_name" content="bloomberg.gitub.io/"/>
+  <meta property="og:site_name" content="bloomberg.github.io"/>
   <meta property="og:type" content="article"/>
 
   <meta name="twitter:card" content="summary_large_image"/>
@@ -29,23 +29,23 @@
   <meta property="og:title" content="wsk">
   <!-- What is the share-able image -->
   <!-- Image aspect ratio: 1.91:1 Image Dimensions: 1200x630px -->
-  <meta property="og:image" content="http://bloomberg.gitub.io//wsk/img/wsk.gif"/>
+  <meta property="og:image" content="https://bloomberg.github.io/wsk/img/wsk.gif"/>
   <!-- What shows up in Facebook -->
-  <meta property="og:description" content="The lightweight, maintainable build system"/>
+  <meta property="og:description" content="wsk, a straightforward and maintainable build system from the Bloomberg Graphics team."/>
   <!-- What shows up in search engines -->
-  <meta name="description" content="The lightweight, maintainable build system">
+  <meta name="description" content="wsk, a straightforward and maintainable build system from the Bloomberg Graphics team.">
   <!-- Some keywords if you want -->
   <meta name="keywords" content="wsk, wsk-notify, bloomberg graphics, build system, wsk build system, javascript console notifications"/>
   <!-- The full link to this graphic -->
   <!-- If you're using https, change these urls -->
-  <meta property="og:url" content="http://bloomberg.gitub.io//wsk/"/>
+  <meta property="og:url" content="https://bloomberg.github.io/wsk/"/>
 
   <!-- Twitter -->
   <meta name="twitter:site" content="@bbgvisualdata"/>
   <!-- What is the tweet / share statement? -->
   <meta name="twitter:title" content="wsk — The lightweight, maintainable build system">
   <!-- What is the tweet / share statement? -->
-  <meta name="twitter:image" content="http://bloomberg.gitub.io//wsk/img/wsk.gif">
+  <meta name="twitter:image" content="https://bloomberg.github.io/wsk/img/wsk.gif">
 
   <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-icon-60x60.png">
@@ -142,7 +142,7 @@
 <span class="hljs-keyword">var</span> watcher = <span class="hljs-built_in">require</span>(<span class="hljs-string">'wsk'</span>).watcher;
 
 <span class="hljs-comment">// This can be an object or an array of objects</span>
-<span class="hljs-keyword">var</span> filesToWatch = [
+<span class="hljs-keyword">var</span> watchGroups = [
   {
     <span class="hljs-attr">serviceName</span>: <span class="hljs-string">'stylus'</span>, <span class="hljs-comment">// Give this watcher a name so we can use it to notify project creators what is happening</span>
     path: <span class="hljs-string">'src/css/**/*.styl'</span>, <span class="hljs-comment">// A glob or an array of globs</span>
@@ -184,13 +184,21 @@
   }
 ];
 
-<span class="hljs-comment">// Add this watch group, will return an error or the chokidar .getWatched() object on done</span>
-watcher.add(filesToWatch, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, watchTree</span>) </span>{
+<span class="hljs-comment">// Add this watch group, will return an error or at list of the chokidar .getWatched() objects on done</span>
+watcher.add(watchGroups, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err, watchTrees</span>) </span>{
   <span class="hljs-keyword">if</span> (err) {
     <span class="hljs-built_in">console</span>.error(err);
     <span class="hljs-keyword">return</span>;
   }
+  <span class="hljs-comment">// An array of directory tree objects for every watchGroup.</span>
+  <span class="hljs-comment">// If you've passed an array of watchGroups, the callback happens after they are all done</span>
   <span class="hljs-built_in">console</span>.log(watchTree);
+  <span class="hljs-comment">/*
+  [{
+    'src/css': [ 'styles.styl', 'embed.styl' ],
+    'src/css/modules': [ 'colors.styl' ]
+  }]
+  */</span>
 });
 </code></pre>
 <p><strong>Note:</strong> wsk uses <a href="https://npmjs.org/package/chokidar">chokidar</a> for its event watching, which <a href="https://github.com/paulmillr/chokidar#methods--events">supports</a> the following events:</p>
@@ -291,6 +299,11 @@ notify({
 <li>Pass in a clock object or timestamp to a taskfile for easy timing.</li>
 <li>Set up a &quot;Resolved&quot; notification style so you can know that your error was fixed via desktop notification.</li>
 </ol>
+</div><div class="scroll-section"><h2 id="contributors"><a class="anchor-link" href="#contributors">#</a> Contributors</h2><ul>
+<li><a href="https://twitter.com/mhkeller">Michael Keller</a></li>
+<li><a href="https://twitter.com/_jsdiamond">Jeremy Diamond</a></li>
+<li><a href="https://twitter.com/blackili">Blacki Migliozzi</a></li>
+</ul>
 </div><div class="scroll-section"><h2 id="license"><a class="anchor-link" href="#license">#</a> License</h2><p>Apache-2.0</p>
 </div>
       </div>
@@ -340,6 +353,7 @@ notify({
 </ul>
 </li>
 <li><a href="#roadmap">Roadmap</a></li>
+<li><a href="#contributors">Contributors</a></li>
 <li><a href="#license">License</a></li>
 </ul>
 

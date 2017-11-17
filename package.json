@@ -1,7 +1,7 @@
 {
   "name": "wsk.docs",
-  "version": "0.0.0",
-  "description": "Documentation for the wsk build system",
+  "version": "1.0.0",
+  "description": "Documentation for the wsk build system.",
   "main": "package.json",
   "scripts": {
     "test": "semistandard --fix src/js/*.js src/js/**/*.js build/**/*",
@@ -55,7 +55,7 @@
     "stylus": "<1.0.0",
     "underscore": "^1.8.3",
     "underscore-template-pipe": "^1.0.0",
-    "wsk": "github:bizweekgraphics/wsk#for-os",
+    "wsk": "^1.0.0",
     "yargs": "^3.32.0"
   },
   "engines": {
