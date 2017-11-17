@@ -24,5 +24,5 @@ function on (which, counters, watchGroups, cb) {
 }
 
 testFiles.forEach(function (testFile) {
-  test.cb(testFile.name, testEach(on, testFile));
+  test.serial.cb(testFile.name, testEach(on, testFile));
 });

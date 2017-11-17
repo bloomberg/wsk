@@ -1,5 +1,4 @@
 import test from 'ava';
-// import sinon from 'sinon';
 
 var getTestFiles = require('./utils/getTestFiles');
 var testEach = require('./utils/testEach');
@@ -20,14 +19,6 @@ function on (which, counters, watchGroups, cb) {
     }
   };
 }
-
-// test.beforeEach(t => {
-//   sinon.spy(console, 'log');
-// });
-
-// test.afterEach(t => {
-//   console.log.restore();
-// });
 
 testFiles.forEach(function (testFile) {
   test.serial.cb(testFile.name, testEach(on, testFile));
