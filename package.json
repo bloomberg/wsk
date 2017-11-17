@@ -1,6 +1,6 @@
 {
   "name": "wsk",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A minimal task runner system to complement your npm scripts.",
   "main": "src/index.js",
   "scripts": {
