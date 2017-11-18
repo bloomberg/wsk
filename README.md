@@ -1,7 +1,7 @@
 wsk [<img src="https://github.com/bloomberg/wsk/raw/docs/src/img/wsk.gif" width="100" align="right" alt="wsk">](https://bloomberg.github.io/wsk)
 ===
 
-[![Build status](https://img.shields.io/travis/bloomberg/wsk.svg?style=flat-square)](https://travis-ci.org/bloomberg/wsk)
+[![Build status](https://img.shields.io/travis/bloomberg/wsk/master.svg?style=flat-square)](https://travis-ci.org/bloomberg/wsk)
 [![Coverage](https://img.shields.io/coveralls/github/bloomberg/wsk/master.svg?style=flat-square)](https://coveralls.io/github/bloomberg/wsk?branch=master)
 [![npm version](https://img.shields.io/npm/v/wsk.svg?style=flat-square)](https://www.npmjs.com/package/wsk)
 [![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-00b9e7.svg?style=flat-square)](https://github.com/Flet/semistandard)
