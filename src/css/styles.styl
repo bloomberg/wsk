@@ -65,6 +65,20 @@ code
 h2
   font-weight bold
 
+.github-link
+  margin-top 14px
+  display inline-block
+  vertical-align top
+  &:before
+    content ' '
+    background-image url(../img/github.svg)
+    display inline-block
+    background-size contain
+    vertical-align top
+    margin-right 5px
+    width 20px
+    height @width
+
 .content
   max-width 'calc(100% - %s)' % $sidebar-width
   width 100%
