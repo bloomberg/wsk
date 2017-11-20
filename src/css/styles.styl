@@ -71,13 +71,15 @@ h2
   vertical-align top
   &:before
     content ' '
-    background-image url(../img/github.svg)
+    background-image url(../img/github-white.svg)
     display inline-block
     background-size contain
     vertical-align top
     margin-right 5px
     width 20px
     height @width
+  &:hover:before
+    background-image url(../img/github-black.svg)
 
 .content
   max-width 'calc(100% - %s)' % $sidebar-width
