@@ -270,21 +270,36 @@ Here is a basic task file setup. Its `onEvent` function runs whenever the files 
 // Task file
 
 // Load our notification module
+var fs = require('fs');
 var notify = require('wsk').notify;
 
-// To run on an event specified in your watcher, the must export an `onEvent` function.
+// To run on an event specified in your watcher, it must export an `onEvent` function.
 // This function gets passed three arguments:
 // `eventType`, name of the event specified in your watch file
 // `changedPath` is the path to the changed file or directory
 // An optional `options` hash that comes from the watcher event specification.
 function onEvent (eventType, changedPath, options) {
-  // Here write Sass JavaScript API code to transform this file...
-
-  // Log out what we're doing to the user
-  notify({
-    message: 'We did something to this file:',
-    value: changedPath,
-    display: 'compile'
+  // Here write JavaScript API code for your target library
+  // to transform the changed file...
+  myRenderLib(changedPath, (err, code) => {
+    if (err) {
+      // Log out what we're doing to the user
+      notify({
+        message: 'Error converting file to foo format...',
+        value: changedPath,
+        display: 'error',
+        error: err
+      });
+    } else {
+      notify({
+        message: 'We did something to this file:',
+        value: changedPath,
+        display: 'compile'
+      });
+      // Write out the file
+      var outPath = changedPath.replace('src', 'public');
+      fs.writeFileSync(outPath, code);
+    }
   });
 }
 
@@ -294,7 +309,7 @@ module.exports = {
 };
 ```
 
-See the [wsk example project](https://github.com/bloomberg/wsk.example/tree/master/build/tasks) for more examples.
+See the [wsk example project](https://github.com/bloomberg/wsk.example/tree/master/build/tasks) for production examples.
 
 ### Package.json Setup
 
