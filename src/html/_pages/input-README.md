@@ -44,7 +44,7 @@ wsk is a small JavaScript library combined with a recommended architecture for c
 
 **[See an example project](https://bloomberg.github.io/wsk.example)**
 
-**[See the wsk's source code on GitHub](https://github.com/bloomberg/wsk)**
+**[See wsk's source code on GitHub](https://github.com/bloomberg/wsk)**
 
 ### Built-in Functionality
 
