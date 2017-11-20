@@ -236,21 +236,36 @@ watcher.add(watchGroups, <span class="hljs-function"><span class="hljs-keyword">
 <pre><code><span class="hljs-comment">// Task file</span>
 
 <span class="hljs-comment">// Load our notification module</span>
+<span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
 <span class="hljs-keyword">var</span> notify = <span class="hljs-built_in">require</span>(<span class="hljs-string">'wsk'</span>).notify;
 
-<span class="hljs-comment">// To run on an event specified in your watcher, the must export an `onEvent` function.</span>
+<span class="hljs-comment">// To run on an event specified in your watcher, it must export an `onEvent` function.</span>
 <span class="hljs-comment">// This function gets passed three arguments:</span>
 <span class="hljs-comment">// `eventType`, name of the event specified in your watch file</span>
 <span class="hljs-comment">// `changedPath` is the path to the changed file or directory</span>
 <span class="hljs-comment">// An optional `options` hash that comes from the watcher event specification.</span>
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onEvent</span> (<span class="hljs-params">eventType, changedPath, options</span>) </span>{
-  <span class="hljs-comment">// Here write Sass JavaScript API code to transform this file...</span>
-
-  <span class="hljs-comment">// Log out what we're doing to the user</span>
-  notify({
-    <span class="hljs-attr">message</span>: <span class="hljs-string">'We did something to this file:'</span>,
-    <span class="hljs-attr">value</span>: changedPath,
-    <span class="hljs-attr">display</span>: <span class="hljs-string">'compile'</span>
+  <span class="hljs-comment">// Here write JavaScript API code for your target library</span>
+  <span class="hljs-comment">// to transform the changed file...</span>
+  myRenderLib(changedPath, (err, code) =&gt; {
+    <span class="hljs-keyword">if</span> (err) {
+      <span class="hljs-comment">// Log out what we're doing to the user</span>
+      notify({
+        <span class="hljs-attr">message</span>: <span class="hljs-string">'Error converting file to foo format...'</span>,
+        <span class="hljs-attr">value</span>: changedPath,
+        <span class="hljs-attr">display</span>: <span class="hljs-string">'error'</span>,
+        <span class="hljs-attr">error</span>: err
+      });
+    } <span class="hljs-keyword">else</span> {
+      notify({
+        <span class="hljs-attr">message</span>: <span class="hljs-string">'We did something to this file:'</span>,
+        <span class="hljs-attr">value</span>: changedPath,
+        <span class="hljs-attr">display</span>: <span class="hljs-string">'compile'</span>
+      });
+      <span class="hljs-comment">// Write out the file</span>
+      <span class="hljs-keyword">var</span> outPath = changedPath.replace(<span class="hljs-string">'src'</span>, <span class="hljs-string">'public'</span>);
+      fs.writeFileSync(outPath, code);
+    }
   });
 }
 
@@ -259,7 +274,7 @@ watcher.add(watchGroups, <span class="hljs-function"><span class="hljs-keyword">
   <span class="hljs-attr">onEvent</span>: onEvent
 };
 </code></pre>
-<p>See the <a href="https://github.com/bloomberg/wsk.example/tree/master/build/tasks">wsk example project</a> for more examples.</p>
+<p>See the <a href="https://github.com/bloomberg/wsk.example/tree/master/build/tasks">wsk example project</a> for production examples.</p>
 </div><div class="scroll-section"><h3 id="packagejson-setup"><a class="anchor-link" href="#packagejson-setup">##</a> Package.json Setup</h3><p>In this pattern, you run your watch files with an npm command such as <code>npm run dev</code> and build your project with <code>npm run build</code>. You can configure your scripts however you like but these docs will discuss the conventions in our example.</p>
 <p>Each dev command starts with <code>dev:</code> and points to watcher files. Build commands start with <code>build:</code> and point to build task files. We add a <code>predev</code> tasks that builds your files every time you start up the dev process.</p>
 <pre><code>{
