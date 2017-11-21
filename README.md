@@ -115,5 +115,6 @@ npm run build-view
 This project has the same foundation as the [wsk example project](http://github.com/bloomberg/wsk.example#file-structure) with the following differences:
 
 1. It loads in its HTML based on the `src/html/_pages/input-README.md` file, which should be the readme file from the published version of wsk. Template helpers remove the table of contents and put it in the sidebar.
-2. Similarly, the images in the `screenshots` folder of `wsk` should be moved to `src/img`.
-2. It uses Stylus instead of Sass, although this will likely be changed in the near future.
+2. One addition is manually added to the `input-README.md` file: the following line is added to the bottom of the `## About` section `**[See wsk's source code on GitHub](https://github.com/bloomberg/wsk)**`.
+3. Similarly, the images in the `screenshots` folder of `wsk` should be moved to `src/img`.
+4. It uses Stylus instead of Sass, although this will likely be changed in the near future.
