@@ -1,11 +1,11 @@
 {
   "name": "wsk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A minimal task runner system to complement your npm scripts.",
   "main": "src/index.js",
   "scripts": {
     "clear-tmp": "rm -rf tests/tmp/*",
-    "test": "nyc ava tests/test-*.js --timeout=60s -s -v",
+    "test": "nyc ava tests/test-*.js --timeout=300s -s -v",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "pretest": "npm run clear-tmp",
     "precoverage": "npm run clear-tmp"
@@ -28,7 +28,7 @@
     "wsk-notify": "^1.0.0"
   },
   "engines": {
-    "node": "^4.4.3"
+    "node": ">=5.0.0"
   },
   "nyc": {
     "exclude": [
